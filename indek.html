@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAMBUTSS PULSA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header>
+        <div>
+            <p class="small-title">KASIR DIGITAL</p>
+            <h1>RAMBUTSS <span>PULSA</span></h1>
+            <p class="subtitle">Kelola transaksi pulsa dengan mudah 🚀</p>
+        </div>
+
+        <div class="status">
+            <span></span> ONLINE
+        </div>
+    </header>
+
+    <!-- REKAP -->
+    <section class="cards">
+
+        <div class="card">
+            <div class="icon">🧾</div>
+            <div>
+                <p>Total Transaksi</p>
+                <h2 id="totalTransaksi">0</h2>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="icon">💰</div>
+            <div>
+                <p>Total Modal</p>
+                <h2 id="totalModal">Rp0</h2>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="icon">💵</div>
+            <div>
+                <p>Total Penjualan</p>
+                <h2 id="totalJual">Rp0</h2>
+            </div>
+        </div>
+
+        <div class="card profit">
+            <div class="icon">📈</div>
+            <div>
+                <p>Total Keuntungan</p>
+                <h2 id="totalUntung">Rp0</h2>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- TRANSAKSI -->
+    <section class="box">
+
+        <div class="box-title">
+            <div>
+                <h2>➕ Transaksi Baru</h2>
+                <p>Masukkan data pulsa yang ingin dijual</p>
+            </div>
+        </div>
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>📱 Nomor HP</label>
+                <input
+                    type="text"
+                    id="nomor"
+                    placeholder="08xxxxxxxxxx"
+                >
+            </div>
+
+            <div class="input-group">
+                <label>📡 Operator</label>
+                <select id="operator">
+                    <option value="Telkomsel">Telkomsel</option>
+                    <option value="Indosat">Indosat</option>
+                    <option value="XL">XL</option>
+                    <option value="Tri">Tri</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>💳 Nominal</label>
+                <select id="nominal">
+                    <option value="5000">Rp5.000</option>
+                    <option value="10000">Rp10.000</option>
+                    <option value="20000">Rp20.000</option>
+                    <option value="25000">Rp25.000</option>
+                    <option value="50000">Rp50.000</option>
+                    <option value="100000">Rp100.000</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>📦 Modal</label>
+                <input
+                    type="number"
+                    id="modal"
+                    placeholder="Ketik modal"
+                    oninput="hitungUntung()"
+                >
+            </div>
+
+            <div class="input-group">
+                <label>💵 Harga Jual</label>
+                <input
+                    type="number"
+                    id="hargaJual"
+                    placeholder="Ketik harga jual"
+                    oninput="hitungUntung()"
+                >
+            </div>
+
+            <div class="input-group">
+                <label>📈 Keuntungan</label>
+                <input
+                    type="text"
+                    id="untung"
+                    placeholder="Otomatis"
+                    readonly
+                >
+            </div>
+
+        </div>
+
+        <button class="btn-simpan" onclick="tambahTransaksi()">
+            💰 SIMPAN TRANSAKSI
+        </button>
+
+    </section>
+
+    <!-- RIWAYAT -->
+    <section class="box">
+
+        <div class="history-header">
+            <div>
+                <h2>📋 Riwayat Transaksi</h2>
+                <p>Semua transaksi yang tersimpan</p>
+            </div>
+
+            <div class="actions">
+                <button class="btn-excel" onclick="downloadExcel()">
+                    📥 Excel
+                </button>
+
+                <button class="btn-delete" onclick="hapusSemua()">
+                    🗑️ Hapus Semua
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nomor</th>
+                        <th>Operator</th>
+                        <th>Nominal</th>
+                        <th>Modal</th>
+                        <th>Jual</th>
+                        <th>Untung</th>
+                        <th>Waktu</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+
+                <tbody id="riwayat"></tbody>
+
+            </table>
+
+        </div>
+
+        <div id="kosong" class="empty">
+            🧾<br>
+            Belum ada transaksi
+        </div>
+
+    </section>
+
+    <footer>
+        RAMBUTSS PULSA • Kasir Digital
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
